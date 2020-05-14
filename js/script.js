@@ -11,10 +11,17 @@ const gallery = document.querySelector('#gallery');
 fetch('https://randomuser.me/api/?results=12&nat=us')
 .then (checkStatus)
 .then(res => res.json())
-.then(data => data.results.map(employee =>  employeeInfo(employee)))
-.then(cardInteract)
-.catch(err => console.log('Looks like something went wrong.', err))
+.then(data => {
 
+    const employees = data.results.map(employee =>  {
+        employeeInfo(employee);
+        cardInteract(employee);
+    });
+
+    console.log(data.results);
+
+})
+.catch(err => console.log('Looks like something went wrong.', err))
 
 /*
     HELPER FUNCTIONS
@@ -42,21 +49,23 @@ function employeeInfo(employee) {
     </div>`; 
 }
 
-function generateModal() {
-    const body = document.querySelector('body'); 
-    body.innerHTML = `
-    <div class="modal-container">
+const body = document.getElementById('body'); 
+const modal = document.createElement('div'); 
+modal.className = 'modal-container';
+
+function generateModal(employee) {
+    modal.innerHTML = `
     <div class="modal">
         <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
         <div class="modal-info-container">
-            <img class="modal-img" src="https://placehold.it/125x125" alt="profile picture">
-            <h3 id="name" class="modal-name cap">name</h3>
-            <p class="modal-text">email</p>
-            <p class="modal-text cap">city</p>
+            <img class="modal-img" src="${employee.picture.large}" alt="profile picture">
+            <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
+            <p class="modal-text">${employee.email}</p>
+            <p class="modal-text cap">${employee.location.city}</p>
             <hr>
-            <p class="modal-text">(555) 555-5555</p>
-            <p class="modal-text">123 Portland Ave., Portland, OR 97204</p>
-            <p class="modal-text">Birthday: 10/21/2015</p>
+            <p class="modal-text">${employee.cell}</p>
+            <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, ${employee.location.state}, ${employee.location.country} ${employee.location.postcode}</p>
+            <p class="modal-text">Birthday: ${employee.dob.date}</p>
         </div>
     </div>
 
@@ -64,24 +73,19 @@ function generateModal() {
         <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
         <button type="button" id="modal-next" class="modal-next btn">Next</button>
     </div>
-    </div>
     `; 
+
+   body.appendChild(modal);
+
 }
 
-function cardInteract() {
+function cardInteract(employee) {
     const cards = document.querySelectorAll('.card'); 
+
     cards.forEach(card => {
-        card.addEventListener('click', () => {
-            generateModal();
+        card.addEventListener('click', e => {
+            generateModal(employee);
         }); 
-    }); 
+    });
+
 }
-
-/* 
-    EVENT LISTENERS
-*/
-
-
-
-// window.addEventListener('DOMContentLoaded', test);
-
