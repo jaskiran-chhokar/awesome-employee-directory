@@ -3,13 +3,16 @@
 */ 
 const gallery = document.querySelector('#gallery'); 
 
+
 /* 
     FETCH FUNCTIONS 
 */ 
 
 fetch('https://randomuser.me/api/?results=12&nat=us')
+.then (checkStatus)
 .then(res => res.json())
 .then(data => data.results.map(employee =>  employeeInfo(employee)))
+.then(cardInteract)
 .catch(err => console.log('Looks like something went wrong.', err))
 
 
@@ -17,7 +20,15 @@ fetch('https://randomuser.me/api/?results=12&nat=us')
     HELPER FUNCTIONS
 */
 
-const employeeInfo = employee => {
+function checkStatus(response) {
+    if(response.ok) {
+        return Promise.resolve(response); 
+    } else {
+        return Promise.reject(new Error(response.statusText));
+    }
+}
+
+function employeeInfo(employee) {
     gallery.innerHTML += 
     `<div class="card">
         <div class="card-img-container">
@@ -31,7 +42,20 @@ const employeeInfo = employee => {
     </div>`; 
 }
 
+function cardInteract() {
+    const cards = document.querySelectorAll('.card'); 
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            console.log('hi');
+        }); 
+    }); 
+}
+
 /* 
     EVENT LISTENERS
 */
+
+
+
+// window.addEventListener('DOMContentLoaded', test);
 
