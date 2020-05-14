@@ -1,10 +1,21 @@
-//Global Variables
+/* 
+    GLOBAL VARIABLES 
+*/ 
 const gallery = document.querySelector('#gallery'); 
 
-//Fetch Request
+/* 
+    FETCH FUNCTIONS 
+*/ 
+
 fetch('https://randomuser.me/api/?results=12&nat=us')
 .then(res => res.json())
 .then(data => data.results.map(employee =>  employeeInfo(employee)))
+.catch(err => console.log('Looks like something went wrong.', err))
+
+
+/*
+    HELPER FUNCTIONS
+*/
 
 const employeeInfo = employee => {
     gallery.innerHTML += 
@@ -19,3 +30,8 @@ const employeeInfo = employee => {
         </div>
     </div>`; 
 }
+
+/* 
+    EVENT LISTENERS
+*/
+
