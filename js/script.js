@@ -68,6 +68,7 @@ function cardInteract(employees) {
 }
 
 function generateModal(employee) {
+
     modal.innerHTML = `
     <div class="modal">
         <button type="button" id="modal-close-btn" class="modal-close-btn"><strong class="modal-close-x">X</strong></button>
@@ -79,7 +80,7 @@ function generateModal(employee) {
             <hr>
             <p class="modal-text"> ${employee.cell}</p>
             <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, ${employee.location.state}, ${employee.location.country} ${employee.location.postcode}</p>
-            <p class="modal-text">Birthday: ${employee.dob.date}</p>
+            <p class="modal-text">Birthday: ${formatBirthday(employee)}</p>
         </div>
     </div>
 
@@ -89,6 +90,13 @@ function generateModal(employee) {
     </div>`; 
 
     body.appendChild(modal);
+}
+
+const formatBirthday = employee => {
+    let birthday = employee.dob.date; 
+    const regex = /[A-Za-z].+/gm; 
+    birthday = birthday.replace(regex, ''); 
+    return birthday; 
 }
 
 function closeModal() {
