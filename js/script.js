@@ -55,11 +55,12 @@ function cardInteract(employees) {
     gallery.addEventListener('click', e => {
         const cards = document.querySelectorAll('.card'); 
         const cardClicked = e.target.closest('.card');
-        const cardClickedName = cardClicked.firstElementChild.nextElementSibling.firstElementChild.textContent;
+        let cardClickedName;
         let cardNames; 
 
         if(cardClicked) {
             for(let i = 0; i < cards.length; i++) {
+                cardClickedName = cardClicked.firstElementChild.nextElementSibling.firstElementChild.textContent;
                 cardName = cards[i].firstElementChild.nextElementSibling.firstElementChild.textContent; 
                 if(cardClickedName === cardName) { generateModal(employees[i]); }
             }
