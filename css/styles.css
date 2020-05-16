@@ -210,6 +210,10 @@ header h1 {
     transition: .4s ease-out;
     outline: none;
   }
+
+  .pointer-none {
+      pointer-events: none;
+  }
   
 
 /* ===================================== 

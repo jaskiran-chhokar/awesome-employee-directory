@@ -15,8 +15,9 @@ fetch('https://randomuser.me/api/?results=12&nat=us')
 .then(checkStatus)
 .then(res => res.json())
 .then(data => { 
+    //console.log(data.results);
     generateEmployee(data.results);
-    generateModal(data.results); 
+   
 })
 .catch(err => console.log('Looks like something went wrong.', err))
 
@@ -33,7 +34,6 @@ function checkStatus(response) {
 }
 
 function generateEmployee(employees) {
-
     employees.forEach(employee =>  {
         gallery.innerHTML += 
         `<div class="card">
@@ -62,14 +62,21 @@ function cardInteract(employees) {
             for(let i = 0; i < cards.length; i++) {
                 cardClickedName = cardClicked.firstElementChild.nextElementSibling.firstElementChild.textContent;
                 cardName = cards[i].firstElementChild.nextElementSibling.firstElementChild.textContent; 
-                if(cardClickedName === cardName) { generateModal(employees[i]); }
+                if(cardClickedName === cardName) { 
+                    generateModal(employees[i]); 
+
+                    //console.log(employees[i]);
+                    modalToggle(i+1, i-1, employees);
+                    
+                }
+                
             }
         }
+
     });
 }
 
 function generateModal(employee) {
-
     modal.innerHTML = `
     <div class="modal">
         <button type="button" id="modal-close-btn" class="modal-close-btn"><strong class="modal-close-x">X</strong></button>
@@ -88,9 +95,10 @@ function generateModal(employee) {
     <div class="modal-btn-container">
         <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
         <button type="button" id="modal-next" class="modal-next btn">Next</button>
-    </div>`; 
+    </div>`;     
 
     body.appendChild(modal);
+
 }
 
 const formatBirthday = employee => {
@@ -105,6 +113,35 @@ function closeModal() {
         if(e.target.className === 'modal-close-x' || (e.target.className === 'modal-close-btn')) { 
             body.removeChild(modal); 
         }
+    });
+}
+
+function modalToggle(nextIndex, prevIndex, employee) {
+
+    body.addEventListener('click', e => {
+
+        if(e.target.classList.contains('modal-prev')) {
+            generateModal(employee[prevIndex--]);
+            nextIndex--;          
+        }
+    
+        if(e.target.classList.contains('modal-next')) {
+            generateModal(employee[nextIndex++]);
+            prevIndex++;  
+        }
+
+        if(prevIndex === -1) {
+            const prevButton = document.querySelector('#modal-prev'); 
+            prevButton.classList.add('pointer-none'); 
+            return false;
+        }
+
+        if(nextIndex === 12) {
+            const nextIndex = document.querySelector('#modal-next'); 
+            nextIndex.classList.add('pointer-none');
+            return false;
+        }
+
     });
 }
 
