@@ -1,9 +1,6 @@
 /* ===================================== 
    Public API Request
 ======================================== */
-
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 * {
 	box-sizing: border-box;
 }
@@ -14,9 +11,9 @@ html, body {
 }
 
 body {
-    font-family: "Nunito", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-align: center;
-    background: rgba(235, 235, 235, 0.9);
+    background: rgba(100,188,205,0.2);
 }
 
 header {
@@ -30,29 +27,33 @@ header {
 
 header h1 {
     font-size: 1.25em;
-    color: rgba(50, 50, 50, 0.9);
+    color: #1c76cc;
     margin-top: 35px;
 }
 
 .search-input {
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(200, 200, 200, 0.9);
-    border-radius: 0.25rem 0 0 0.25rem ;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    border-bottom: 2px solid #1c76cc;
     max-width: 20rem;
     transition: .4s ease-out;
     outline: none;
 }
 
+.search-input::placeholder {
+    color: #1c76cc;
+}
+
 .search-input:active, .search-input:hover, .search-input:focus {
-    border: 1px solid rgba(50, 50, 50, 0.9);
+    border: 1px solid #1c76cc;
 }
 
 .search-submit {
     cursor: pointer;
-    height: 33px;
-    background: rgba(245, 245, 245, 0.9);
-    border-radius: 0 0.25rem 0.25rem 0;
-    border: 1px solid rgba(200, 200, 200, 0.9);
+    padding: 0.5rem 1rem;
+    background: white; 
+    border: none; 
+    border-bottom: 2px solid #1c76cc;
     transition: .4s ease-out;
     outline: none;
 }
@@ -78,7 +79,6 @@ header h1 {
 }
   
 .card {
-    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -86,10 +86,8 @@ header h1 {
     width: 100%;
     max-width: 360px;
     margin: 10px 10px 20px;
-    padding: 10px;
-    background: rgba(245, 245, 245, 0.9);
-    border-radius: 0.25em;
-    border: 1px solid rgba(50, 50, 50, 0.3);
+    padding: 3rem 2rem;
+    background: white;
     transition: .4s ease-out;
     overflow: hidden;
 }
@@ -101,11 +99,12 @@ header h1 {
 }
 
 .card-info-container {
-    text-align: left;
+    text-align: center;
 }
 
 .card-name {
     margin: 20px auto 0;
+    color: #1c76cc;
 }
 
 .card-text {
@@ -113,6 +112,7 @@ header h1 {
     color: rgba(50, 50, 50, 0.7);
     margin: 7px auto;
     transition: .4s ease-out;
+    font-weight: 300;
 }
 
 .cap {
@@ -133,10 +133,14 @@ header h1 {
     background: rgba(0, 0, 0, 0.7);
 }
 
+.modal-info-container {
+    padding: 2rem;
+}
+
 .modal {
     position: relative;
     width: 95%;
-    max-width: 420px;
+    max-width: 520px;
     min-height: 415px;
     margin: 10px auto auto;
     padding-bottom: 15px;
@@ -152,10 +156,9 @@ header h1 {
     right: 15px;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.8);
+    background: #1c76cc;
     outline: none;
-    border-radius: 0.25em;
-    border: 1px solid rgba(50, 50, 50, 0.3);
+    border: 1px solid #1c76cc;
 }
 
 .modal-img {
@@ -166,10 +169,12 @@ header h1 {
 
 .modal-name {
     margin-bottom: 5px;
+    color: #1c76cc;
 }
 
 .modal-text {
     color: rgba(50, 50, 50, 0.7);
+    font-weight: 300;
     margin: 10px;
 }
 
@@ -185,7 +190,7 @@ header h1 {
     flex-wrap: nowrap;
     justify-content: space-evenly;
     width: 95%;
-    max-width: 420px;
+    max-width: 520px;
     padding: 10px 15px 15px;;
     margin: 10px auto auto;
     background: rgba(255, 255, 255, 1);
@@ -201,8 +206,7 @@ header h1 {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.9);
     padding: 0.75em 1.5em;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 0.35em;
+    background: #1c76cc;
     transition: .4s ease-out;
     outline: none;
   }
@@ -222,8 +226,9 @@ header h1 {
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
-        padding-right: 25px;
-        padding-left: 25px;
+        padding-right: 2rem;
+        padding-left: 2rem;
+        padding-bottom: 3rem;
     }
 
     .header-text-container {
@@ -249,7 +254,6 @@ header h1 {
 
     .card:hover {
         background: rgba(255, 255, 255, 1);
-        border: 1px solid rgba(50, 50, 50, 0.9);
     }
 
     .card:hover .card-text {
