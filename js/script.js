@@ -106,30 +106,36 @@ const formatBirthday = employee => {
 function modalToggle(nextIndex, prevIndex, employee) {
 
     modal.addEventListener('click', e => {
+
+        
+
         if(e.target.classList.contains('modal-prev')) {
-            generateModal(employee[prevIndex--]);
-            nextIndex--;          
+            if(prevIndex === -1) {
+                const prevButton = document.querySelector('#modal-prev'); 
+                prevButton.classList.add('pointer-none'); 
+                return true;
+            } else {
+                generateModal(employee[prevIndex--]);
+                nextIndex--;    
+                return true; 
+            }
         }
     
         if(e.target.classList.contains('modal-next')) {
-            generateModal(employee[nextIndex++]);
-            prevIndex++;  
-        }
+            if(nextIndex === 12) {
+                const nextButton = document.querySelector('#modal-next'); 
+                nextButton.classList.add('pointer-none');
+                return true;
+            } else {
+                generateModal(employee[nextIndex++]);
+                prevIndex++;  
+                return true;
+            }
+        }  
 
         if(e.target.className === 'modal-close-x' || (e.target.className === 'modal-close-btn')) { 
             modal.remove();
         } 
-        
-        else if(prevIndex === -1) {
-            const prevButton = document.querySelector('#modal-prev'); 
-            prevButton.classList.add('pointer-none'); 
-            return true;
-        }
-        
-        else if(nextIndex === 12) {
-            const nextButton = document.querySelector('#modal-next'); 
-            nextButton.classList.add('pointer-none');
-            return true;
-        }
+
     });
 }
