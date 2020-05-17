@@ -15,9 +15,7 @@ fetch('https://randomuser.me/api/?results=12&nat=us')
 .then(checkStatus)
 .then(res => res.json())
 .then(data => { 
-    //console.log(data.results);
     generateEmployee(data.results);
-   
 })
 .catch(err => console.log('Looks like something went wrong.', err))
 
@@ -64,41 +62,38 @@ function cardInteract(employees) {
                 cardName = cards[i].firstElementChild.nextElementSibling.firstElementChild.textContent; 
                 if(cardClickedName === cardName) { 
                     generateModal(employees[i]); 
-
-                    //console.log(employees[i]);
                     modalToggle(i+1, i-1, employees);
-                    
                 }
-                
             }
         }
-
     });
 }
 
 function generateModal(employee) {
-    modal.innerHTML = `
-    <div class="modal">
-        <button type="button" id="modal-close-btn" class="modal-close-btn"><strong class="modal-close-x">X</strong></button>
-        <div class="modal-info-container">
-            <img class="modal-img" src="${employee.picture.large}" alt="profile picture">
-            <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
-            <p class="modal-text">${employee.email}</p>
-            <p class="modal-text cap">${employee.location.city}</p>
-            <hr>
-            <p class="modal-text"> ${employee.cell}</p>
-            <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, ${employee.location.state}, ${employee.location.country} ${employee.location.postcode}</p>
-            <p class="modal-text">Birthday: ${formatBirthday(employee)}</p>
+    
+    if(employee !== undefined) {
+        modal.innerHTML = `
+        <div class="modal">
+            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong class="modal-close-x">X</strong></button>
+            <div class="modal-info-container">
+                <img class="modal-img" src="${employee.picture.large}" alt="profile picture">
+                <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
+                <p class="modal-text">${employee.email}</p>
+                <p class="modal-text cap">${employee.location.city}</p>
+                <hr>
+                <p class="modal-text"> ${employee.cell}</p>
+                <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, ${employee.location.state}, ${employee.location.country} ${employee.location.postcode}</p>
+                <p class="modal-text">Birthday: ${formatBirthday(employee)}</p>
+            </div>
         </div>
-    </div>
-
-    <div class="modal-btn-container">
-        <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-        <button type="button" id="modal-next" class="modal-next btn">Next</button>
-    </div>`;     
-
-    body.appendChild(modal);
-
+    
+        <div class="modal-btn-container">
+            <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+            <button type="button" id="modal-next" class="modal-next btn">Next</button>
+        </div>`;     
+    
+        body.appendChild(modal);
+    }
 }
 
 const formatBirthday = employee => {
@@ -108,18 +103,9 @@ const formatBirthday = employee => {
     return birthday; 
 }
 
-function closeModal() {
-    body.addEventListener('click', (e) => {
-        if(e.target.className === 'modal-close-x' || (e.target.className === 'modal-close-btn')) { 
-            body.removeChild(modal); 
-        }
-    });
-}
-
 function modalToggle(nextIndex, prevIndex, employee) {
 
-    body.addEventListener('click', e => {
-
+    modal.addEventListener('click', e => {
         if(e.target.classList.contains('modal-prev')) {
             generateModal(employee[prevIndex--]);
             nextIndex--;          
@@ -130,19 +116,20 @@ function modalToggle(nextIndex, prevIndex, employee) {
             prevIndex++;  
         }
 
-        if(prevIndex === -1) {
+        if(e.target.className === 'modal-close-x' || (e.target.className === 'modal-close-btn')) { 
+            modal.remove();
+        } 
+        
+        else if(prevIndex === -1) {
             const prevButton = document.querySelector('#modal-prev'); 
             prevButton.classList.add('pointer-none'); 
-            return false;
+            return true;
         }
-
-        if(nextIndex === 12) {
-            const nextIndex = document.querySelector('#modal-next'); 
-            nextIndex.classList.add('pointer-none');
-            return false;
+        
+        else if(nextIndex === 12) {
+            const nextButton = document.querySelector('#modal-next'); 
+            nextButton.classList.add('pointer-none');
+            return true;
         }
-
     });
 }
-
-closeModal();
