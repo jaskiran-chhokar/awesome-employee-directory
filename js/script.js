@@ -127,11 +127,9 @@ function modalToggle(nextIndex, prevIndex, employee) {
         if(e.target.classList.contains('modal-prev')) {
             generateModal(employee[prevIndex--],prevIndex);
             nextIndex--;    
-            return false; 
         } else if(e.target.classList.contains('modal-next')) {
             generateModal(employee[nextIndex++],nextIndex);
-            prevIndex++;  
-            return false;
+            prevIndex++;
         } 
     }); 
 }
