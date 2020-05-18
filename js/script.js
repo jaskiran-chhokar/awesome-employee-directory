@@ -61,7 +61,7 @@ function cardInteract(employees) {
                 cardClickedName = cardClicked.firstElementChild.nextElementSibling.firstElementChild.textContent;
                 cardName = cards[i].firstElementChild.nextElementSibling.firstElementChild.textContent; 
                 if(cardClickedName === cardName) { 
-                    generateModal(employees[i]); 
+                    generateModal(employees[i],i); 
                     modalToggle(i+1, i-1, employees);
                 }
             }
@@ -69,9 +69,10 @@ function cardInteract(employees) {
     });
 }
 
-function generateModal(employee) {
-    
+function generateModal(employee, index) {
+
     if(employee !== undefined) {
+
         modal.innerHTML = `
         <div class="modal">
             <button type="button" id="modal-close-btn" class="modal-close-btn"><strong class="modal-close-x">X</strong></button>
@@ -90,8 +91,9 @@ function generateModal(employee) {
         <div class="modal-btn-container">
             <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
             <button type="button" id="modal-next" class="modal-next btn">Next</button>
-        </div>`;     
-    
+        </div>`;  
+        
+        disableButton(index); 
         body.appendChild(modal);
     }
 }
@@ -105,37 +107,42 @@ const formatBirthday = employee => {
 
 function modalToggle(nextIndex, prevIndex, employee) {
 
-    modal.addEventListener('click', e => {
-
-        
-
-        if(e.target.classList.contains('modal-prev')) {
-            if(prevIndex === -1) {
-                const prevButton = document.querySelector('#modal-prev'); 
-                prevButton.classList.add('pointer-none'); 
-                return true;
-            } else {
-                generateModal(employee[prevIndex--]);
-                nextIndex--;    
-                return true; 
-            }
-        }
+    disableButton(prevIndex);
+    disableButton(nextIndex);
     
-        if(e.target.classList.contains('modal-next')) {
-            if(nextIndex === 12) {
-                const nextButton = document.querySelector('#modal-next'); 
-                nextButton.classList.add('pointer-none');
-                return true;
-            } else {
-                generateModal(employee[nextIndex++]);
-                prevIndex++;  
-                return true;
-            }
-        }  
+    modal.addEventListener('click', e => {
 
         if(e.target.className === 'modal-close-x' || (e.target.className === 'modal-close-btn')) { 
             modal.remove();
-        } 
+        }   
 
-    });
+        if(e.target.classList.contains('modal-prev')) {
+            generateModal(employee[prevIndex--],prevIndex);
+            nextIndex--;    
+            return false; 
+        }
+
+        else if(e.target.classList.contains('modal-next')) {
+            generateModal(employee[nextIndex++],nextIndex);
+            prevIndex++;  
+            return false;
+        } 
+        
+        else {
+            return false; 
+        }
+
+    }); 
+}
+
+function disableButton(index) {
+
+    const prevButton = document.querySelector('#modal-prev'); 
+    const nextButton = document.querySelector('#modal-next'); 
+
+    if(index === -1) {
+        prevButton.classList.add('pointer-none');
+    } else if(index === 12) {
+        nextButton.classList.add('pointer-none');
+    }
 }
