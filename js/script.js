@@ -1,16 +1,14 @@
 /* 
     GLOBAL VARIABLES 
 */ 
-
 const gallery = document.querySelector('#gallery'); 
 const body = document.getElementById('body'); 
 const modal = document.createElement('div'); 
 modal.className = 'modal-container';
 
 /* 
-    FETCH FUNCTIONS 
+    FETCH FUNCTION
 */ 
-
 fetch('https://randomuser.me/api/?results=12&nat=us')
 .then(checkStatus)
 .then(res => res.json())
@@ -22,7 +20,6 @@ fetch('https://randomuser.me/api/?results=12&nat=us')
 /*
     HELPER FUNCTIONS
 */
-
 function checkStatus(response) {
     if(response.ok) {
         return Promise.resolve(response); 
@@ -30,7 +27,9 @@ function checkStatus(response) {
         return Promise.reject(new Error(response.statusText));
     }
 }
-
+/*
+    Generate cards for each employee
+*/
 function generateEmployee(employees) {
     employees.forEach(employee =>  {
         gallery.innerHTML += 
@@ -48,7 +47,9 @@ function generateEmployee(employees) {
 
     cardInteract(employees); 
 }
-
+/*
+    Responsible for user interaction with card
+*/
 function cardInteract(employees) {
     gallery.addEventListener('click', e => {
         const cards = document.querySelectorAll('.card'); 
@@ -69,6 +70,9 @@ function cardInteract(employees) {
     });
 }
 
+/*
+    Generate modal window for corresponding employee
+*/
 function generateModal(employee, index) {
 
     if(employee !== undefined) {
@@ -98,6 +102,9 @@ function generateModal(employee, index) {
     }
 }
 
+/*
+    Format employee birthday for readibility
+*/
 const formatBirthday = employee => {
     let birthday = employee.dob.date; 
     const regex = /[A-Za-z].+/gm; 
@@ -105,6 +112,9 @@ const formatBirthday = employee => {
     return birthday; 
 }
 
+/*
+    Toggle back and forth between employees while modal window is open 
+*/ 
 function modalToggle(nextIndex, prevIndex, employee) {
 
     disableButton(prevIndex);
@@ -112,29 +122,23 @@ function modalToggle(nextIndex, prevIndex, employee) {
     
     modal.addEventListener('click', e => {
 
-        if(e.target.className === 'modal-close-x' || (e.target.className === 'modal-close-btn')) { 
-            modal.remove();
-        }   
+        modalClose(e.target);
 
         if(e.target.classList.contains('modal-prev')) {
             generateModal(employee[prevIndex--],prevIndex);
             nextIndex--;    
             return false; 
-        }
-
-        else if(e.target.classList.contains('modal-next')) {
+        } else if(e.target.classList.contains('modal-next')) {
             generateModal(employee[nextIndex++],nextIndex);
             prevIndex++;  
             return false;
         } 
-        
-        else {
-            return false; 
-        }
-
     }); 
 }
 
+/*
+    Disable buttons on first and last modal window 
+*/
 function disableButton(index) {
 
     const prevButton = document.querySelector('#modal-prev'); 
@@ -145,4 +149,13 @@ function disableButton(index) {
     } else if(index === 12) {
         nextButton.classList.add('pointer-none');
     }
+}
+
+/*
+    Close modal window 
+*/ 
+function modalClose(closeButton) {
+    if(closeButton.className === 'modal-close-x' || (closeButton.className === 'modal-close-btn')) { 
+        modal.remove();
+    }   
 }

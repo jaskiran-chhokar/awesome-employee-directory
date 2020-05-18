@@ -266,9 +266,9 @@ header h1 {
     .card:hover .card-text {
         color: rgba(25, 25, 25, 1); 
     }
-
     .btn:hover {
         background: rgba(255, 255, 255, 1);
-        color: rgba(25, 25, 25, 1); 
+        color: #1c76cc;
+        border: 1px solid #1c76cc;
     }
 }
