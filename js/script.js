@@ -157,3 +157,47 @@ function modalClose(closeButton) {
         modal.remove();
     }   
 }
+
+/*
+    Search functionality 
+*/ 
+const searchInput = document.querySelector('#search-input');
+const searchMessage = document.createElement('p'); 
+
+const search = () => {
+
+    const names = document.querySelectorAll('.card-name'); 
+    noSearchResultsMsg();
+
+    for(let i = 0; i < names.length; i++) {
+
+        const card = names[i].parentElement.parentElement; 
+        card.classList.add('display-none');
+
+        if(searchInput.value !== 0 && names[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+            card.classList.remove('display-none');
+            searchMessage.remove();
+        } 
+
+        if(searchInput.value === '') {
+            card.classList.remove('display-none');
+            searchMessage.remove();
+        } 
+    }
+}
+
+/*
+    Error message for 'No Search Results Found' 
+*/
+const noSearchResultsMsg = () => {
+    searchMessage.className = 'no-results-message'; 
+    gallery.appendChild(searchMessage);
+    searchMessage.innerHTML = 'Sorry, No Search Results Found.';  
+}
+
+/* 
+    EVENT LISTENERS 
+*/ 
+searchInput.addEventListener('keyup', () => {
+    search();
+}); 
