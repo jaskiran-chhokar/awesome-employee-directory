@@ -24,4 +24,4 @@ I used the Random User Generator API (https://randomuser.me/) to fetch a list of
 
 ## Live Link 
 
-Check out the live project here: 
+Check out the live project here: https://jaskiran-chhokar.github.io/public-api-requests/
