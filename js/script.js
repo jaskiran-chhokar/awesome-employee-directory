@@ -162,6 +162,7 @@ function modalClose(closeButton) {
     Search functionality 
 */ 
 const searchInput = document.querySelector('#search-input');
+const searchButton = document.querySelector('#search-submit'); 
 const searchMessage = document.createElement('p'); 
 
 const search = () => {
@@ -200,4 +201,9 @@ const noSearchResultsMsg = () => {
 */ 
 searchInput.addEventListener('keyup', () => {
     search();
+}); 
+
+searchButton.addEventListener('click', e => {
+    search();
+    e.preventDefault();
 }); 
