@@ -193,7 +193,7 @@ const search = () => {
 const noSearchResultsMsg = () => {
     searchMessage.className = 'no-results-message'; 
     gallery.appendChild(searchMessage);
-    searchMessage.innerHTML = 'Sorry, No Search Results Found.';  
+    searchMessage.innerHTML = 'Sorry, No Search Results Found...';  
 }
 
 /* 
