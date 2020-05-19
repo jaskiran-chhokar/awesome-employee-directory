@@ -157,6 +157,21 @@ function modalClose(closeButton) {
         modal.remove();
     }   
 }
+/* 
+    Insert search input into DOM
+*/
+const insertSearch = () => {
+    const searchContainer = document.querySelector('.search-container');
+    const searchDiv = document.createElement('form'); 
+    searchDiv.setAttribute('method','get'); 
+    searchDiv.setAttribute('action','#'); 
+    searchDiv.innerHTML = `
+    <input type="search" id="search-input" class="search-input" placeholder="Search...">
+    <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">`; 
+    searchContainer.appendChild(searchDiv);
+}
+
+insertSearch();
 
 /*
     Search functionality 
@@ -178,7 +193,7 @@ const search = () => {
         if(searchInput.value !== 0 && names[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
             card.classList.remove('display-none');
             searchMessage.remove();
-        } 
+        }
 
         if(searchInput.value === '') {
             card.classList.remove('display-none');
