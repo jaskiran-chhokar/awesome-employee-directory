@@ -55,13 +55,12 @@ function cardInteract(employees) {
         const cards = document.querySelectorAll('.card'); 
         const cardClicked = e.target.closest('.card');
         let cardClickedName;
-        let cardNames; 
 
         if(cardClicked) {
             for(let i = 0; i < cards.length; i++) {
-                cardClickedName = cardClicked.firstElementChild.nextElementSibling.firstElementChild.textContent;
-                cardName = cards[i].firstElementChild.nextElementSibling.firstElementChild.textContent; 
-                if(cardClickedName === cardName) { 
+                cardClickedName = cardClicked.firstElementChild.nextElementSibling.firstElementChild;
+                cardName = cards[i].firstElementChild.nextElementSibling.firstElementChild; 
+                if(cardClickedName.textContent === cardName.textContent) { 
                     generateModal(employees[i],i); 
                     modalToggle(i+1, i-1, employees);
                 }
