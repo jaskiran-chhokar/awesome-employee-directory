@@ -106,9 +106,10 @@ function generateModal(employee, index) {
 */
 const formatBirthday = employee => {
     let birthday = employee.dob.date; 
-    const regex = /[A-Za-z].+/gm; 
-    birthday = birthday.replace(regex, ''); 
-    return birthday; 
+    let birthdayYear = birthday.slice(0, 4);
+    let birthMonth = birthday.slice(5,7); 
+    let birthDay = birthday.slice(8,10); 
+    return `${birthDay}/${birthMonth}/${birthdayYear}`; 
 }
 
 /*
