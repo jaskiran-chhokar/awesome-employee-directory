@@ -16,11 +16,6 @@ I used the Random User Generator API (https://randomuser.me/) to fetch a list of
     - Asynchronously Handled Data
     - API Requests
     - ES6 Best Practices
-    
- ## CSS Changes 
- - Changed overall color scheme 
- - Styled each card so that the contents are aligned vertically 
- - Styled buttons to match theme
 
 ## How to Run 
 
