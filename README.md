@@ -1,27 +1,26 @@
 # Awesome Startup Employee Directory 
 
-For this project, I built an app for a fictional company called "Awesome Startup" - a distributed company with remote employees working all over the world. 
+For this project, I built an app for a fictional company called "Awesome Startup" - a distributed company with remote employees working all over the world. They need a smart way for employees to share their contact information with each other. 
 
-They need a smart way for employees to share their contact information with each other. 
+**Live Version:** https://jaskiran-chhokar.github.io/public-api-requests/
 
-## Random User Generator API 
+## Project Requirements
 
-I used the Random User Generator API (https://randomuser.me/) to fetch a list of 12 random employees, and used that data to build a prototype for an employee directory.
+### :information_desk_person: Random User Generator API
+    
+:heavy_check_mark: Use the Random User Generator API (https://randomuser.me/) to fetch a list of 12 random employees.
 
-## Languages 
+:heavy_check_mark: Utilize data provided by the API to build a prototype for an employee directory.
 
-- HTML5
-- CSS3
-- JavaScript 
-    - Asynchronously Handled Data
-    - API Requests
-    - ES6 Best Practices
+:heavy_check_mark: Request a JSON object from the API and parse the data so that 12 employees are listed in a grid with their thumbnail image, full name, email, and location. Clicking the employee’s image or name will open a modal window with more detailed information, such as the employee’s birthday and address.
 
-## How to Run 
+:heavy_check_mark: Use JavaScript programming to asynchronously handle required data. 
 
-1. Download/Clone this repo 
-2. Run index.html using any sort of Live Server 
 
-## Live Link 
+## Built With
 
-Check out the live project here: https://jaskiran-chhokar.github.io/public-api-requests/
+:heavy_check_mark: HTML5
+
+:heavy_check_mark: CSS3
+
+:heavy_check_mark: JavaScript (ES6) 
