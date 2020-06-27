@@ -24,6 +24,13 @@ For this project, I built an app for a fictional company called "Awesome Startup
 
 :heavy_check_mark: Allow the user to search for a specific employee with a search bar that filters for employees by name. 
 
+### :art: Design
+
+:heavy_check_mark: Define a default style guide to be used throughout the site. 
+
+:heavy_check_mark: Formulate a colour palette to be used throughout the website.
+
+:heavy_check_mark: Design responsive page layout. 
 
 ## Built With
 
