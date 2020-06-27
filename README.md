@@ -16,6 +16,9 @@ For this project, I built an app for a fictional company called "Awesome Startup
 
 :heavy_check_mark: Use JavaScript programming to asynchronously handle required data. 
 
+:heavy_check_mark: Modal window must contain a function close button. That way, the user can easily exit out. 
+
+:heavy_check_mark: Modal window should consist of two "prev" and "next" buttons, in order to allow the user to easily switch back and forth between employees. 
 
 ## Built With
 
