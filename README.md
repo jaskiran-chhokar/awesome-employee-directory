@@ -2,7 +2,7 @@
 
 For this project, I built an app for a fictional company called "Awesome Startup" - a distributed company with remote employees working all over the world. They need a smart way for employees to share their contact information with each other. 
 
-**Live Version:** https://jaskiran-chhokar.github.io/public-api-requests/
+**Live Version:** https://jaskiran-chhokar.github.io/awesome-employee-directory/
 
 ## Project Requirements
 
