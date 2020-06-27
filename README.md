@@ -8,7 +8,7 @@ For this project, I built an app for a fictional company called "Awesome Startup
 
 ### :information_desk_person: Random User Generator API
     
-:heavy_check_mark: Use the Random User Generator API (https://randomuser.me/) to fetch a list of 12 random employees.
+:heavy_check_mark: Use the [Random User Generator API](https://randomuser.me/) to fetch a list of 12 random employees.
 
 :heavy_check_mark: Utilize data provided by the API to build a prototype for an employee directory.
 
