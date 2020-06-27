@@ -20,6 +20,11 @@ For this project, I built an app for a fictional company called "Awesome Startup
 
 :heavy_check_mark: Modal window should consist of two "prev" and "next" buttons, in order to allow the user to easily switch back and forth between employees. 
 
+### :mag_right: Search/Filtering Component
+
+:heavy_check_mark: Allow the user to search for a specific employee with a search bar that filters for employees by name. 
+
+
 ## Built With
 
 :heavy_check_mark: HTML5
