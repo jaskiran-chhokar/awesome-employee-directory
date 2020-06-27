@@ -24,3 +24,11 @@ For this project, I built an app for a fictional company called "Awesome Startup
 :heavy_check_mark: CSS3
 
 :heavy_check_mark: JavaScript (ES6) 
+
+## Acknowledgments
+
+[Normalize CSS](https://necolas.github.io/normalize.css/)
+
+[Google Fonts](https://fonts.google.com/)
+
+[Random User Generator API](https://randomuser.me/)
